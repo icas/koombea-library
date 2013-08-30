@@ -1,0 +1,13 @@
+defaults: &defaults
+  adapter: postgresql
+  template: template0
+  host: localhost
+
+development:
+  <<: *defaults
+  database: koombea_library_development
+
+test:
+  <<: *defaults
+  min_messages: warning #magic sauce
+  database: koombea_library_test
