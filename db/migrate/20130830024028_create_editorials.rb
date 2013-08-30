@@ -4,6 +4,7 @@ class CreateEditorials < ActiveRecord::Migration
       t.string :name
 
       t.timestamps
+      t.index(:name, :unique => true)
     end
   end
 end

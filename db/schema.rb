@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130830024028) do
+ActiveRecord::Schema.define(version: 20130830032037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20130830024028) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "book_exemplaries", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "owner_id"
+    t.boolean  "available",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "book_exemplaries", ["book_id"], name: "index_book_exemplaries_on_book_id", using: :btree
+  add_index "book_exemplaries", ["owner_id"], name: "index_book_exemplaries_on_owner_id", using: :btree
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -37,5 +48,17 @@ ActiveRecord::Schema.define(version: 20130830024028) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "editorials", ["name"], name: "index_editorials_on_name", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

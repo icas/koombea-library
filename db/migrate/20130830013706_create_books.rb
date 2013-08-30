@@ -1,7 +1,7 @@
 class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
-      t.string :title
+      t.string :title, :unique => true
       t.integer :author_id
       t.integer :editorial_id
       t.date :published_date
