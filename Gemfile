@@ -33,9 +33,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 group :test do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'rspec-rails', '~> 2.0'
   gem 'shoulda-matchers', '2.3.0'
 end
 
@@ -51,3 +59,5 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem "twitter-bootstrap-rails"
+gem "omniauth"
+gem "omniauth-google-apps"
