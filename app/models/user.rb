@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
       user.last_name = auth['info']['last_name']
     end
   end
+
+  def self.is?(role)
+    self.role.role == role.to_s
+  end
 end

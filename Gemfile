@@ -61,3 +61,5 @@ end
 gem "twitter-bootstrap-rails"
 gem "omniauth"
 gem "omniauth-google-apps"
+#authorization
+gem "cancan"
