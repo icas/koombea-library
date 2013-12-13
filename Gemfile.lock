@@ -46,6 +46,9 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
+    fabrication (2.9.3)
+    faker (1.2.0)
+      i18n (~> 0.5)
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
@@ -157,6 +160,8 @@ DEPENDENCIES
   binding_of_caller
   cancan
   coffee-rails (~> 4.0.0)
+  fabrication
+  faker
   jbuilder (~> 1.2)
   jquery-rails
   omniauth

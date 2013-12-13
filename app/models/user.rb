@@ -9,10 +9,11 @@ class User < ActiveRecord::Base
       user.email = auth['info']['email']
       user.first_name = auth['info']['first_name']
       user.last_name = auth['info']['last_name']
+      user.role_id = Role.find_by_account_type("user").id
     end
   end
 
-  def self.is?(role)
-    self.role.role == role.to_s
+  def have_the_role?(account_type)
+    role.account_type == account_type.to_s
   end
 end

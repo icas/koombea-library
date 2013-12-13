@@ -36,11 +36,11 @@ class Ability
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
-    if user.is? :user
+    if user.have_the_role? :user
         can :read, Book
         can :read, Author
         can :read, Editorial
-    elsif user.is? :admin
+    elsif user.have_the_role? :admin
         can :manage, Book
         can :manage, Author
         can :manage, Editorial
