@@ -39,14 +39,14 @@ group :development do
 end
 
 group :development, :test do
-  gem "faker"
   gem 'rspec-rails'
-  gem 'fabrication'
 end
 
 group :test do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'shoulda-matchers', '2.3.0'
+  gem "faker"
+  gem 'fabrication'
 end
 
 # Use ActiveModel has_secure_password

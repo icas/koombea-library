@@ -50,7 +50,4 @@ RSpec.configure do |config|
       'last_name' => 'Berdejo'
     }
   })
-
-  # let login a user
-  config.include SpecTestHelper, :type => :controller
 end

@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
-  skip_authorization_check :only => [:index, :search]
+  skip_load_resource :only => [:create]
 
   def index
     @books = Book.all
@@ -21,12 +21,13 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(book_id)
+    @book = Book.find params[:id]
   end
 
   def destroy
-    @book = Book.find(book_id)
+    @book = Book.find params[:id]
     @book.destroy
+    flash[:notice] = "Libro Eliminado"
     redirect_to books_path
   end
 
@@ -36,9 +37,5 @@ class BooksController < ApplicationController
   # about it
   def books_params
     params.require(:book).permit(:title, :author_id, :editorial_id, :published_date, :format)
-  end
-
-  def book_id
-    params.require(:book).permit(:id)
   end
 end
