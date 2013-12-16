@@ -1,13 +1,12 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource :only => [:create]
+  skip_load_resource :only => [:create, :update]
 
   def index
     @books = Book.all
   end
 
   def new
-    @book = Book.new
   end
 
   def create
@@ -22,6 +21,19 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
+  end
+
+  def edit
+    @book = Book.find params[:id]
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(books_params)
+      redirect_to books_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy

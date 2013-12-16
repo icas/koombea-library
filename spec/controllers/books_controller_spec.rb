@@ -48,6 +48,33 @@ describe BooksController, "user role" do
       expect(response).to redirect_to root_url
     end
   end
+
+  context "GET #edit" do
+    it "redirects to home" do
+      book = Fabricate(:book)
+      @ability.cannot :update, Book
+      get :edit, id: book.id
+      expect(response).to redirect_to root_url
+    end
+  end
+
+  context "PUT #update" do
+    it "redirects to home" do
+      book = Fabricate(:book)
+      @ability.cannot :update, Book
+      put :update, id: book.id
+      expect(response).to redirect_to root_url
+    end
+  end
+
+  context "DELETE #destroy" do
+    it "redirects to home" do
+      book = Fabricate(:book)
+      @ability.cannot :delete, Book
+      delete :destroy, id: book.id
+      expect(response).to redirect_to root_url
+    end
+  end
 end
 
 describe BooksController, "admin and root role" do
@@ -77,6 +104,24 @@ describe BooksController, "admin and root role" do
     it "redirects to books_path" do
       post :create, book: attributes
       expect(response).to redirect_to books_path
+    end
+  end
+
+  context "GET #edit" do
+    it "renders the edit template" do
+      book = Fabricate(:book)
+      @ability.can :update, Book
+      get :edit, id: book.id
+      expect(response).to render_template :edit
+    end
+  end
+
+  context "PUT #update" do
+    it "updates a book" do
+      book = Fabricate(:book)
+      @ability.can :update, Book
+      put :update, id: book, book: Fabricate.attributes_for(:book, title: "the new title")
+      assigns(:book).title.should eq("the new title")
     end
   end
 
