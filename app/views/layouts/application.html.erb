@@ -32,6 +32,12 @@
               <% if current_user %>
                 <li><%= link_to "Logout", logout_path%></li>
               <% end %>
+              <li>
+                <%= form_tag books_path, :method => 'get', :html => { class: "form-search" } do %>
+                <%= text_field_tag :search, params[:search], class: "input-medium search-query" %>
+                <%= submit_tag "Search", :name => nil, class: "btn" %>
+                <% end %>
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -8,11 +8,21 @@ describe BooksController, "all roles" do
   end
 
   context "GET #index" do
+    let(:books) do
+      Fabricate.times(2, :book)
+    end
+
     it "lists all the books" do
       @ability.can :read, Book
-      books = Fabricate.times(3, :book)
       get :index
       expect(assigns(:books)).to match_array(books)
+    end
+
+    it "shows a list of books matching the query" do
+      @ability.can :read, Book
+      get :index, query: "search"
+      book = Fabricate(:book, title: "search")
+      expect(assigns(:books)).to match_array([book])
     end
   end
 

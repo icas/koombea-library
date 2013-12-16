@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   skip_load_resource :only => [:create, :update]
 
   def index
-    @books = Book.all
+    @books = Book.search(params[:search])
   end
 
   def new
@@ -43,7 +43,7 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  private
+private
   # this is a workarraound to make CanCan work with Rails4
   # please refer to application_controller to get more info
   # about it

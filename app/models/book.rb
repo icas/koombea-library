@@ -14,4 +14,12 @@ class Book < ActiveRecord::Base
 	validates :format, presence: true, inclusion: { in: FORMATS }
 
 	#Callbacks
+	#
+	def self.search(search)
+		if search.blank?
+			all
+		else
+			where("title like ?", "%#{search}%")
+		end
+	end
 end
