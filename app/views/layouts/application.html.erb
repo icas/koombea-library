@@ -17,46 +17,45 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">KoombeaLibrary</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Login with Google", "/auth/google_apps"  %></li>
-              <% if current_user %>
-                <li><%= link_to "Logout", logout_path%></li>
-              <% end %>
-              <li>
-                <%= form_tag books_path, :method => 'get', :html => { class: "form-search" } do %>
-                <%= text_field_tag :search, params[:search], class: "input-medium search-query" %>
-                <%= submit_tag "Search", :name => nil, class: "btn" %>
-                <% end %>
-              </li>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "KoombeaLibrary", root_url, class: "navbar-brand"%>
+        </div>
+        <div class="" id="navbar-main">
+          <% if current_user %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to "Books", books_path %></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          <% end %>
+
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Login with Google", "/auth/google_apps" %></li>
+            <% end %>
+          </ul>
+
+          <%= form_tag books_path, :method => 'get', class: "navbar-form navbar-right" do %>
+            <%= text_field_tag :search, params[:search], class: "form-control col-lg-8", placeholder: "Search" %>
+          <% end %>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
+    <div class="container">
 
+      <%= render 'shared/alerts' %>
+
+      <%= yield %>
+
+    </div>
+
+    <div class="container">
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Koombea-Library 2013</p>
       </footer>
-
-    </div> <!-- /container -->
-
+    </div>
   </body>
 </html>

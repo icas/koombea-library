@@ -35,8 +35,10 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    user ||= User.new # guest user (not logged in)
-    if user.have_the_role? :user
+    # user ||= User.new # guest user (not logged in)
+    if user.nil?
+        cannot :manage, :all
+    elsif user.have_the_role? :user
         can :read, Book
         can :read, Author
         can :read, Editorial
@@ -44,7 +46,7 @@ class Ability
         can :manage, Book
         can :manage, Author
         can :manage, Editorial
-    else
+    elsif user.have_the_role? :root
         can :manage, :all
         can :assign_roles, User
     end
