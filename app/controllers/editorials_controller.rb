@@ -16,6 +16,7 @@ class EditorialsController < ApplicationController
       flash[:notice] = "Editorial Guardada"
       redirect_to editorials_path
     else
+      flash[:error] = "No pudimos guardar la editorial"
       render action: :new
     end
   end
@@ -34,6 +35,7 @@ class EditorialsController < ApplicationController
       flash[:notice] = "Cambios Guardados"
       redirect_to editorials_path
     else
+      flash[:error] = "No pudimos guardar la editorial"
       render 'edit'
     end
   end

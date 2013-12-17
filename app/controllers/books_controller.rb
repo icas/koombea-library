@@ -15,6 +15,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Libro Guardado"
       redirect_to books_path
     else
+      flash[:error] = "No pudimos guardar el libro"
       render action: :new
     end
   end

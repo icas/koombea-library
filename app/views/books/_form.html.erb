@@ -8,13 +8,13 @@
   <div class="control-group">
     <%= f.label :author_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :author_id, :class => 'text_field' %>
+      <%= f.select :author_id, Author.all.collect {|au| [ au.name, au.id ] }, { prompt: "Author" }, { :class => 'form-control' } %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :editorial_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :editorial_id, :class => 'text_field' %>
+      <%= f.select :editorial_id, Editorial.all.collect {|ed| [ ed.name, ed.id ] }, { prompt: "Editorial" }, { :class => 'form-control' } %>
     </div>
   </div>
   <div class="control-group">
