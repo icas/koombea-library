@@ -30,6 +30,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(books_params)
+      flash[:notice] = "Cambios Guardados"
       redirect_to books_path
     else
       render 'edit'
@@ -46,7 +47,9 @@ class BooksController < ApplicationController
 private
   # this is a workarraound to make CanCan work with Rails4
   # please refer to application_controller to get more info
-  # about it
+  # about it.
+  # Note: the name must match the controller_name in plural
+  # like posts_params. Note the 's'
   def books_params
     params.require(:book).permit(:title, :author_id, :editorial_id, :published_date, :format)
   end

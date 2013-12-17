@@ -47,13 +47,13 @@ describe BooksController, "user role" do
     it "redirects to home" do
       @ability.can :read, Book
       get :new
-      expect(response).not_to render_template :new
+      expect(response).to redirect_to root_url
     end
   end
 
   context "POST #create" do
     it "redirects to home" do
-      @ability.cannot :read, Book
+      @ability.cannot :create, Book
       post :create, book: {}
       expect(response).to redirect_to root_url
     end
