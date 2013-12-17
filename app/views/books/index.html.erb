@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:author_id) %></th>
       <th><%= model_class.human_attribute_name(:editorial_id) %></th>
@@ -18,10 +17,9 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= link_to book.id, book_path(book) %></td>
-        <td><%= book.title %></td>
-        <td><%= book.author_id %></td>
-        <td><%= book.editorial_id %></td>
+        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= book.author.name %></td>
+        <td><%= book.editorial.name %></td>
         <td><%= book.published_date %></td>
         <td><%= book.format %></td>
         <td><%=l book.created_at %></td>

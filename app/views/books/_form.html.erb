@@ -8,25 +8,25 @@
   <div class="control-group">
     <%= f.label :author_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :author_id, Author.all.collect {|au| [ au.name, au.id ] }, { prompt: "Author" }, { :class => 'form-control' } %>
+      <%= f.select :author_id, Author.all.collect {|au| [ au.name, au.id ] }, { prompt: "Author" } %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :editorial_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :editorial_id, Editorial.all.collect {|ed| [ ed.name, ed.id ] }, { prompt: "Editorial" }, { :class => 'form-control' } %>
+      <%= f.select :editorial_id, Editorial.all.collect {|ed| [ ed.name, ed.id ] }, { prompt: "Editorial" } %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :published_date, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :published_date, :class => 'text_field' %>
+      <%= f.date_field :published_date, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :format, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :format, :class => 'text_field' %>
+      <%= f.select :format, [:paper, :digital].collect {|format| [format] }, { prompt: "Formato" } %>
     </div>
   </div>
 

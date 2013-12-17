@@ -4,5 +4,5 @@ KoombeaLibrary::Application.routes.draw do
   get "logout", to: "sessions#destroy", as: "logout"
   root 'pages#index'
 
-  resources :books, :editorials
+  resources :books, :editorials, :authors
 end
