@@ -12,8 +12,8 @@ describe "User" do
 
     context "when is an single user" do
       let(:user) do
-        Fabricate(:user) do
-          role { Fabricate(:role, account_type: "user") }
+        Fabricate.build(:user) do
+          role { Fabricate.build(:role, account_type: "user") }
         end
       end
       it{ should be_able_to(:read, Book.new) }
@@ -27,8 +27,8 @@ describe "User" do
 
     context "when is an admin user" do
       let(:user) do
-        Fabricate(:user) do
-          role { Fabricate(:role, account_type: "admin") }
+        Fabricate.build(:user) do
+          role { Fabricate.build(:role, account_type: "admin") }
         end
       end
 
@@ -39,8 +39,8 @@ describe "User" do
 
     context "when is an single user" do
       let(:user) do
-        Fabricate(:user) do
-          role { Fabricate(:role, account_type: "root") }
+        Fabricate.build(:user) do
+          role { Fabricate.build(:role, account_type: "root") }
         end
       end
 

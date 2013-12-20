@@ -11,13 +11,15 @@ describe User do
 
 	describe "when the mail has already been taken" do
     before :each do
-       role = Role.first
-      @user = User.create(email: "user@example.com", role: role, first_name: "ric", last_name: "ber")
+      role = Role.first
+      @user = Fabricate(:user) do
+        email "user@example.com"
+        role role
+      end
       user_with_same_email = @user.dup
       user_with_same_email.email = @user.email.upcase
       user_with_same_email.save
     end
-
     it { should_not be_valid }
   end
 end

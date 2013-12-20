@@ -6,7 +6,8 @@ describe UserSession do
   end
 
   it "sets the email" do
-    @session.current_user("email")
+    user = double(email: "email")
+    @session.start_session(user)
     @session.user_email.should eq("email")
   end
 end
