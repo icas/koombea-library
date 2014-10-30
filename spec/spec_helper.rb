@@ -41,13 +41,4 @@ RSpec.configure do |config|
   config.order = "random"
   #omniauth
   OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:google_apps] = OmniAuth::AuthHash.new({
-    'provider' => 'google_apps',
-    'uid' => '123545',
-    'info' => {
-      'email' => 'ricardo.berdejo@koombea.com',
-      'first_name' => 'Ricardo',
-      'last_name' => 'Berdejo'
-    }
-  })
 end

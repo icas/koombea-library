@@ -42,6 +42,8 @@ group :test do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'shoulda-matchers', '2.3.0'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'pry'
 end
 
 # Use ActiveModel has_secure_password
