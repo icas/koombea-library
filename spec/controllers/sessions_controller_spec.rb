@@ -17,7 +17,7 @@ describe SessionsController do
 
     it "should successfully create a session" do
       post :create, provider: :google_apps
-      assigns(:user_session).user_email.should_not be_nil
+      assigns(:current_user).should_not be_nil
     end
 
     it "should redirect the user to the root url" do
@@ -34,7 +34,7 @@ describe SessionsController do
 
     it "should clear the session" do
       get :destroy
-      assigns(:user_session).user_email.should be_nil
+      assigns(:current_user).should be_nil
     end
 
     it "should redirect to the home page" do

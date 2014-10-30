@@ -4,12 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
 
-  def user_session
-    @user_session ||= UserSession.new(session)
-  end
+  before_filter ->{UserSession.storage = session} #Set user session storage
+
 
   def current_user
-    email = user_session.user_email
-    @current_user ||= User.find_by_email(email) if email
+    @current_user ||= if current_session = UserSession.current
+                          User.find_by_id(current_session.user_id)
+                      end
+  end
+
+  def current_user2=(user)
+    UserSession.current_user = user
   end
 end

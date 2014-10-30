@@ -1,18 +1,28 @@
 class UserSession
-  def initialize(session)
-    @session = session
-    @session[:user_email] ||= ""
+  attr_reader :user_id
+
+  def self.storage=(session_storage)
+    @session_storage = session_storage
+  end
+  def self.storage
+    @session_storage
   end
 
-  def start_session(user)
-    @session[:user_email] = user.email
+  def self.current_user=(user)
+    @session_storage[:user_id] = user.id
   end
 
-  def user_email
-    @session[:user_email]
+  def self.current
+    if @session_storage[:user_id]
+      self.new(@session_storage[:user_id])
+    end
   end
 
-  def destroy
-    @session[:user_email] = nil
+  def self.destroy_current
+    @session_storage.delete(:user_id)
+  end
+
+  def initialize(user_id)
+    @user_id = user_id
   end
 end

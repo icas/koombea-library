@@ -9,13 +9,14 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     email = auth['info']['email']
-    user = User.find_by_email(email) || User.create_with_omniauth(auth)
-    user_session.start_session(user)
+
+    user = User.find_by_email(email) || User.create_with_omniauth(auth) #Refactor
+    current_user2 = user
     redirect_to root_url
   end
 
   def destroy
-    user_session.destroy
+    UserSession.destroy_current
     redirect_to root_url
   end
 end
