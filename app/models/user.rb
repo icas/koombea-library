@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 	#Associations
   belongs_to :role
 	#Validations
-	validates :email, presence: true, uniqueness: { case_sensitive: false }
+	validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A.+@koombea.com\z/,
+    message: "not a company email" }
 
   def self.create_with_omniauth(auth)
     create do |user|
@@ -11,4 +12,5 @@ class User < ActiveRecord::Base
       user.last_name = auth['info']['last_name']
     end
   end
+
 end
