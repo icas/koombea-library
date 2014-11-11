@@ -1,7 +1,7 @@
 class BookItem < ActiveRecord::Base
 
   #Constants
-  FORMATS = ['digital', 'paper']
+  FORMATS = ['pdf', 'paper']
 
   #Associations
   belongs_to :book

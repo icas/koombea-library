@@ -13,5 +13,5 @@ describe BookItem do
   it {  should validate_presence_of(:book) }
   it {  should validate_presence_of(:user) }
   it {  should validate_presence_of(:format) }
-  it {  should ensure_inclusion_of(:format).in_array(['digital', 'paper'])}
+  it {  should ensure_inclusion_of(:format).in_array(['pdf', 'paper'])}
 end
