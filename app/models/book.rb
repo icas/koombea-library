@@ -1,7 +1,5 @@
 class Book < ActiveRecord::Base
-	#Constants
-	FORMATS = ['digital', 'paper']
-
+	
 	#Accessors
 	#attr_accessor :title, :author_id, :editorial_id, :published_date, :format
 
@@ -11,7 +9,7 @@ class Book < ActiveRecord::Base
 
 	#Validations
 	validates :title, :published_date, presence: true
-	validates :format, presence: true, inclusion: { in: FORMATS }
+
 
 	#Callbacks
 end
